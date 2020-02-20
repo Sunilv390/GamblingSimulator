@@ -26,7 +26,10 @@ do
 			echo losse
 			((cash--))
 		fi
+			dayWonLoss=$(($cash-$STAKE))
 	done
 	totalAmount[index]=$cash
+	dayWonLoss[index]=$dayWonLoss
 done
 echo "Total Amount won or loss :: "${totalAmount[@]}
+echo "Days won and Loss by :: "${dayWonLoss[@]}
