@@ -30,6 +30,21 @@ do
 	done
 	totalAmount[index]=$cash
 	dayWonLoss[index]=$dayWonLoss
+	WonandLossAmount=$(($WonandLossAmount+$dayWonLoss))
+   totalWonLossAmount[index]=$WonandLossAmount
 done
 echo "Total Amount won or loss :: "${totalAmount[@]}
 echo "Days won and Loss by :: "${dayWonLoss[@]}
+echo "Total won and Loss amount :: "${totalWonLossAmount[@]}
+
+#SHOWING LUCKIEST AND UNLUCKIEST DAY
+for k in ${!totalWonLossAmount[@]}
+do
+   echo $k 'thdayisLuckiest' ${totalWonLossAmount[$k]}
+done | sort -rn -k3 | head -1
+
+for k in ${!totalWonLossAmount[@]}
+do
+   echo $k 'thdayisUnlucky' ${totalWonLossAmount[$k]}
+done | sort -rn -k3 | tail -1
+
