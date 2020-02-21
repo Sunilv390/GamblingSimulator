@@ -6,7 +6,9 @@
 STAKE=100
 BET=1
 ISWIN=1
+cash2=$STAKE
 
+function gambler(){
 #FOR LOOP FOR CHECKING FOR A MONTH
 for (( index=1; index<=20; index++ ))
 do
@@ -20,10 +22,8 @@ do
 		randomCheck=$((RANDOM%2))
 		if [ $randomCheck -eq $ISWIN ]
 		then
-			echo win
 			((cash++))
 		else
-			echo losse
 			((cash--))
 		fi
 			dayWonLoss=$(($cash-$STAKE))
@@ -47,4 +47,14 @@ for k in ${!totalWonLossAmount[@]}
 do
    echo $k 'thdayisUnlucky' ${totalWonLossAmount[$k]}
 done | sort -rn -k3 | tail -1
+
+#CHECKING TO PLAY AGAIN
+if [ $WonandLossAmount -ge $cash2 ]
+then
+	 gambler
+else
+	echo "SORRY U HAVE TO STOP GAMBLING :("
+fi
+}
+gambler
 
